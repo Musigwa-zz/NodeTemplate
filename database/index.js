@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { PORT, DB_URL } = require("../constants");
 
-class Helpers {
+class Database {
   static async dbConnect() {
     try {
       await mongoose.connect(DB_URL, {
@@ -10,10 +10,9 @@ class Helpers {
       });
       console.log(`Listening on port ${PORT}, DB connected successfully!`);
     } catch (error) {
-      console.log("There was an error:", error);
-      console.error(error);
+      console.error("There was an error:", error);
     }
   }
 }
 
-module.exports = Helpers;
+module.exports = Database;

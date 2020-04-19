@@ -7,7 +7,7 @@ const cors = require("cors");
 const passportConfig = require("./middleware/passport.js");
 const routes = require("./routes");
 const { PORT } = require("./constants");
-const Helpers = require("./helpers");
+const Database = require("./database");
 
 const { json, urlencoded } = express;
 const app = express();
@@ -19,6 +19,6 @@ app.use(cors(), helmet(), passport.initialize());
 passportConfig(passport);
 app.use("/api", routes);
 
-const server = app.listen(PORT, Helpers.dbConnect);
+const server = app.listen(PORT, Database.dbConnect);
 
 module.exports = server;
