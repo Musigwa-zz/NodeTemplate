@@ -1,4 +1,4 @@
-const { statusCodes, errorMessages } = require('../constants');
+const { statusCodes, errorMessages } = require("../constants");
 
 module.exports = (cb) => async (req, res, next) => {
   try {
@@ -10,7 +10,7 @@ module.exports = (cb) => async (req, res, next) => {
       [error] = err.details;
       error.status = statusCodes.BAD_REQUEST;
     }
-    if (err.name && err.name.includes('JsonWebTokenError')) {
+    if (err.name && err.name.includes("JsonWebTokenError")) {
       return res
         .status(statusCodes.UNAUTHORIZED)
         .json({ message: errorMessages.UNAUTHORIZED });
