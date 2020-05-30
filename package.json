@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "prettier": "eslint --ignore-path ./.gitignore . --fix"
+    "prettier": "eslint --ignore-path ./.gitignore . --fix",
+    "seq:clean": "sed -i -e '/sequelize/d' package.json",
+    "seq:undo": "rm -rf ./migrations && rm -rf ./seeders",
+    "remodel": "rm -rf ./models/mongoose && rm -rf ./models/sequelize",
+    "set:mongoose": "mv -v ./models/mongoose/* ./models && npm run remodel && npm run seq:undo",
+    "set:sequelize": "mv -v ./models/sequelize/* ./models && npm run remodel"
   },
   "keywords": [
     "nodejs",
@@ -26,10 +31,10 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
     "pg": "^7.14.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.2"
+    "sequelize": "^5.21.2",
+    "passport-jwt": "^4.0.0"
   },
   "husky": {
     "hooks": {
